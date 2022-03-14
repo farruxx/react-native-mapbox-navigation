@@ -559,12 +559,12 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
         speechApi = MapboxSpeechApi(
             context,
             accessToken,
-            Locale.US.language
+            Locale("RU").language
         )
         voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(
             context,
             accessToken,
-            Locale.US.language
+            Locale("RU").language
         )
 
         // initialize route line, the withRouteLineBelowLayerId is specified to place
@@ -598,12 +598,8 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
         }
         binding.recenter.setOnClickListener {
             navigationCamera.requestNavigationCameraToFollowing()
-            binding.routeOverview.showTextAndExtend(BUTTON_ANIMATION_DURATION)
         }
-        binding.routeOverview.setOnClickListener {
-            navigationCamera.requestNavigationCameraToOverview()
-            binding.recenter.showTextAndExtend(BUTTON_ANIMATION_DURATION)
-        }
+
         binding.soundButton.setOnClickListener {
             // mute/unmute voice instructions
             isVoiceInstructionsMuted = !isVoiceInstructionsMuted
@@ -658,6 +654,7 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
                     .coordinatesList(listOf(origin, destination))
                     .profile(DirectionsCriteria.PROFILE_DRIVING)
                     .steps(true)
+                    .language("ru")
                     .build(),
                 object : RouterCallback {
                     override fun onRoutesReady(
@@ -709,7 +706,6 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
 
         // show UI elements
         binding.soundButton.visibility = View.VISIBLE
-        binding.routeOverview.visibility = View.VISIBLE
         binding.tripProgressCard.visibility = View.VISIBLE
 
         // move the camera to overview when new route is available
@@ -726,7 +722,6 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
         // hide UI elements
         binding.soundButton.visibility = View.INVISIBLE
         binding.maneuverView.visibility = View.INVISIBLE
-        binding.routeOverview.visibility = View.INVISIBLE
         binding.tripProgressCard.visibility = View.INVISIBLE
     }
 
