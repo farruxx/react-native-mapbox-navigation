@@ -332,11 +332,11 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
         val maneuvers = maneuverApi.getManeuvers(routeProgress)
         maneuvers.fold(
             { error ->
-                Toast.makeText(
-                    context,
-                    error.errorMessage,
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    context,
+//                    error.errorMessage,
+//                    Toast.LENGTH_SHORT
+//                ).show()
             },
             {
                 maneuverView.visibility = View.VISIBLE
