@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.location.Location
 import android.location.LocationManager
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -628,6 +629,15 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
         // and later when a route is set also receiving route progress updates
         mapboxNavigation.startTripSession()
         startRoute()
+
+        val handler = Handler()
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                navigationCamera.requestNavigationCameraToFollowing()
+
+                handler.postDelayed(this, 30000)
+            }
+        }, 30000)
     }
 
     private fun startRoute() {
