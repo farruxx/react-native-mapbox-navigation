@@ -635,9 +635,9 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
             override fun run() {
                 navigationCamera.requestNavigationCameraToFollowing()
 
-                handler.postDelayed(this, 30000)
+                handler.postDelayed(this, 15000)
             }
-        }, 30000)
+        }, 15000)
     }
 
     private fun startRoute() {
