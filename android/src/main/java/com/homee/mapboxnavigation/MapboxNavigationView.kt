@@ -732,7 +732,7 @@ class MapboxNavigationView(private val context: ThemedReactContext, private val 
 
         // show UI elements
         soundButton.visibility = View.VISIBLE
-        tripProgressCard.visibility = View.VISIBLE
+        tripProgressCard.visibility = View.INVISIBLE
 
         // move the camera to overview when new route is available
         navigationCamera.requestNavigationCameraToFollowing()
